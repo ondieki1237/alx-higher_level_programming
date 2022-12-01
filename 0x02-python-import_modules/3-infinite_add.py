@@ -2,6 +2,7 @@
 from sys import argv
 
 
+
 def main():
     sum = 0
     for i in argv[1:]:
