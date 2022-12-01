@@ -5,4 +5,3 @@ if number == 0:
     print("{:d}".format(number), "is zero")
 else:
     print(number, "is positive" if number > 0 else "is negative")
-    
