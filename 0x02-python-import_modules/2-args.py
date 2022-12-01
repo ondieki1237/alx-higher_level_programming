@@ -2,6 +2,7 @@
 import sys
 
 
+
 def main():
     l = len(sys.argv)
     print('{:d} argument{:}'.format(l - 1, '.' if l == 1 else

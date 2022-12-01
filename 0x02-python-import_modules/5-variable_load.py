@@ -2,6 +2,7 @@
 from variable_load_5 import a
 
 
+
 def main():
     print("{:d}".format(a))
 
