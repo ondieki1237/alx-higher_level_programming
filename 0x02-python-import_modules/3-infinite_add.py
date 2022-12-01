@@ -8,5 +8,6 @@ def main():
         sum += int(i)
     print("{:d}".format(sum))
 
+
 if __name__ == "__main__":
     main()
