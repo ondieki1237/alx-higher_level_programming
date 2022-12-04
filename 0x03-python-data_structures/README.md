@@ -4,5 +4,5 @@
 * data structures
 * learning to program 6
 
-### CODED AND WRITTEN BY SETHBELLARIN
-         ###  @sethbellarin
+
+### @sethbellarin
