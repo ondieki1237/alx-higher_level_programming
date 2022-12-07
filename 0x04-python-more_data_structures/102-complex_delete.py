@@ -4,4 +4,3 @@ def complex_delete(a_dictionary, value):
     for key in new:
         a_dictionary.pop(key)
     return a_dictionary
-
