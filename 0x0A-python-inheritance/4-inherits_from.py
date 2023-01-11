@@ -1,5 +1,3 @@
-
-
 #!/usr/bin/python3
 """module to check classes of objects"""
 

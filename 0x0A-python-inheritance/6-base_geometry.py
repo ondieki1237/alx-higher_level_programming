@@ -11,4 +11,3 @@ class BaseGeometry:
     def area(self):
         """defines area of shape"""
         raise Exception("area() is not implemented")
-

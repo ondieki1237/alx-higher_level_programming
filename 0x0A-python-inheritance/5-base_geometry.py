@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 """module evaluate geometry using maths operations"""
 
