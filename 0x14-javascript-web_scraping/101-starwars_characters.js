@@ -1,35 +1,46 @@
+#!/usr/bin/node
+
 const request = require('request');
 
-const movieId = process.argv[2];
-if (!movieId) {
-	    console.error('Please provide a Movie ID');
-	    process.exit(1);
+function getDataFrom (url) {
+	  return new Promise(function (resolve, reject) {
+		      request(url, function (err, _res, body) {
+			            if (err) {
+					            reject(err);
+					          } else {
+							          resolve(body);
+							        }
+			          });
+		    });
 }
 
-const filmUrl = `https://swapi-api.alx-tools.com/api/films/${movieId}/`;
+function errHandler (err) {
+	  console.log(err);
+}
 
-request(filmUrl, { json: true }, (err, res, body) => {
-	    if (err) {
-		            return console.error('Error:', err);
-		        }
+function printMovieCharacters (movieId) {
+	  const movieUri = `https://swapi-api.hbtn.io/api/films/${movieId}`;
 
-	    if (res.statusCode !== 200) {
-		            return console.error(`Failed to fetch film with ID ${movieId}:`, res.statusCode);
-		        }
+	  getDataFrom(movieUri)
+	    .then(JSON.parse, errHandler)
+	    .then(function (res) {
+		          const characters = res.characters;
+		          const promises = [];
 
-	    const characters = body.characters;
-	    characters.forEach(characterUrl => {
-		            request(characterUrl, { json: true }, (charErr, charRes, charBody) => {
-				                if (charErr) {
-							                return console.error('Error:', charErr);
-							            }
+		          for (let i = 0; i < characters.length; ++i) {
+				          promises.push(getDataFrom(characters[i]));
+				        }
 
-				                if (charRes.statusCode !== 200) {
-							                return console.error(`Failed to fetch character:`, charRes.statusCode);
-							            }
-
-				                console.log(charBody.name);
+		          Promise.all(promises)
+		            .then((results) => {
+				              for (let i = 0; i < results.length; ++i) {
+						                  console.log(JSON.parse(results[i]).name);
+						                }
+				            })
+		            .catch((err) => {
+				              console.log(err);
 				            });
 		        });
-});
+}
 
+printMovieCharacters(process.argv[2]);
